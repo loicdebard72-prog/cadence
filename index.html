@@ -2,103 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Calendar</title>
     <style>
-        table { 
-            border-collapse: collapse; 
-            width: 100%; 
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            font-family: Arial, sans-serif;
         }
-        th, td { 
-            border: 1px solid #333; 
-            padding: 10px; 
-            text-align: center; 
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
         }
-        .oui { background-color: green; }
-        .non { background-color: red; }
-        .partiel { background-color: yellow; }
-        .unknown { background-color: grey; }
+        .day {
+            border: 1px solid #fff;
+            padding: 10px;
+        }
+        .available {
+            background-color: green;
+        }
+        .not-available {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
-    <h1>Interactive Calendar</h1>
-    <h2>Participants</h2>
-    <ul>
-        <li>Louise</li>
-        <li>Béatrice</li>
-        <li>Alto</li>
-        <li>Aymeric</li>
-        <li>Christophe</li>
-        <li>Nicolas</li>
-    </ul>
-    <table>
-        <thead>
-            <tr>
-                <th>Month</th>
-                <th>Louise</th>
-                <th>Béatrice</th>
-                <th>Alto</th>
-                <th>Aymeric</th>
-                <th>Christophe</th>
-                <th>Nicolas</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Mai</td>
-                <td class="oui">OUI</td>
-                <td class="non">NON</td>
-                <td class="partiel">Partiel</td>
-                <td class="oui">OUI</td>
-                <td class="unknown">?</td>
-                <td class="oui">OUI</td>
-            </tr>
-            <tr>
-                <td>Juin</td>
-                <td class="oui">OUI</td>
-                <td class="oui">OUI</td>
-                <td class="unknown">?</td>
-                <td class="non">NON</td>
-                <td class="oui">OUI</td>
-                <td class="oui">OUI</td>
-            </tr>
-            <tr>
-                <td>Juillet</td>
-                <td class="partiel">Partiel</td>
-                <td class="oui">OUI</td>
-                <td class="oui">OUI</td>
-                <td class="non">NON</td>
-                <td class="non">NON</td>
-                <td class="oui">OUI</td>
-            </tr>
-            <tr>
-                <td>Août</td>
-                <td class="oui">OUI</td>
-                <td class="partiel">Partiel</td>
-                <td class="oui">OUI</td>
-                <td class="oui">OUI</td>
-                <td class="non">NON</td>
-                <td class="oui">OUI</td>
-            </tr>
-        </tbody>
-    </table>
-    <h3>Legend</h3>
-    <ul>
-        <li><span class="oui">OUI</span>: Confirmed availability</li>
-        <li><span class="non">NON</span>: Not available</li>
-        <li><span class="partiel">Partiel</span>: Partially available</li>
-        <li><span class="unknown">?</span>: Unknown availability</li>
-    </ul>
-    <script>
-        document.querySelectorAll('td').forEach(cell => {
-            cell.addEventListener('click', () => {
-                cell.classList.toggle('oui');
-                cell.classList.toggle('non');
-                cell.classList.toggle('partiel');
-                cell.classList.toggle('unknown');
-            });
-        });
-    </script>
+    <h1>Interactive Calendar for May, June, July, August 2026</h1>
+    <div class="calendar">
+        <!-- Calendar Days -->
+        <!-- Example for May - Fill in further as necessary -->
+        <div class="day available">May 1<br>
+            <input type="text" placeholder="10h-13h" />
+            <input type="text" placeholder="14h-18h" />
+            <input type="text" placeholder="19h-22h" />
+        </div>
+        <div class="day available">May 2<br>
+            <input type="text" placeholder="10h-13h" />
+            <input type="text" placeholder="14h-18h" />
+            <input type="text" placeholder="19h-22h" />
+        </div>
+        <div class="day available">May 3<br>
+            <input type="text" placeholder="10h-13h" />
+            <input type="text" placeholder="14h-18h" />
+            <input type="text" placeholder="19h-22h" />
+        </div>
+        <!-- Repeat this structure for each day through August 31 -->
+    </div>
+    <div class="legend">
+        <h3>Legend:</h3>
+        <div style="background-color: green;">OUI - Confirmed Availability</div>
+        <div style="background-color: red;">NON - Not Available</div>
+    </div>
 </body>
 </html>
