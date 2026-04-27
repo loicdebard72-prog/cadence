@@ -7,52 +7,61 @@
     <style>
         body {
             background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
             font-family: Arial, sans-serif;
+            color: white;
         }
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .day {
-            border: 1px solid #fff;
+        th, td {
+            border: 1px solid white;
             padding: 10px;
+            text-align: center;
         }
-        .available {
-            background-color: green;
-        }
-        .not-available {
-            background-color: red;
+        .oui { background-color: green; }
+        .non { background-color: red; }
+        .partiel { background-color: yellow; }
+        .unknown { background-color: blue; }
+        .legend {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Interactive Calendar for May, June, July, August 2026</h1>
-    <div class="calendar">
-        <!-- Calendar Days -->
-        <!-- Example for May - Fill in further as necessary -->
-        <div class="day available">May 1<br>
-            <input type="text" placeholder="10h-13h" />
-            <input type="text" placeholder="14h-18h" />
-            <input type="text" placeholder="19h-22h" />
-        </div>
-        <div class="day available">May 2<br>
-            <input type="text" placeholder="10h-13h" />
-            <input type="text" placeholder="14h-18h" />
-            <input type="text" placeholder="19h-22h" />
-        </div>
-        <div class="day available">May 3<br>
-            <input type="text" placeholder="10h-13h" />
-            <input type="text" placeholder="14h-18h" />
-            <input type="text" placeholder="19h-22h" />
-        </div>
-        <!-- Repeat this structure for each day through August 31 -->
-    </div>
+    <h1>Interactive Calendar: May to August 2026</h1>
     <div class="legend">
-        <h3>Legend:</h3>
-        <div style="background-color: green;">OUI - Confirmed Availability</div>
-        <div style="background-color: red;">NON - Not Available</div>
+        <div><span class="oui">OUI</span> - Confirmed Availability (Green)</div>
+        <div><span class="non">NON</span> - Unavailable (Red)</div>
+        <div><span class="partiel">Partiel</span> - Partial Availability (Yellow)</div>
+        <div><span class="unknown">?</span> - Unknown Availability (Blue)</div>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>10h - 13h</th>
+                <th>14h - 18h</th>
+                <th>19h - 22h</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- HTML rows for each day from May to August 2026 -->
+            <!-- Loop through each month and each day -->
+            <tr><th colspan="4">May 2026</th></tr>
+            <tr><td>01</td><td class="oui">Louise</td><td class="partiel">Béatrice</td><td class="non">Alto</td></tr>
+            <tr><td>02</td><td class="non">Aymeric</td><td class="oui">Christophe</td><td class="unknown">Nicolas</td></tr>
+            <tr><td>03</td><td class="oui">Louise</td><td class="non">Béatrice</td><td class="partiel">Alto</td></tr>
+            <!-- Repeat for all relevant dates and participants, with color coding according to availability -->
+            <tr><th colspan="4">June 2026</th></tr>
+            <tr><td>01</td><td class="non">Louise</td><td class="oui">Béatrice</td><td class="partiel">Nicolas</td></tr>
+            <tr><td>02</td><td class="unknown">Alto</td><td class="oui">Aymeric</td><td class="non">Christophe</td></tr>
+            <!-- Continue adding rows for June, July and August 2026 -->
+            <tr><th colspan="4">July 2026</th></tr>
+            <!-- July rows here -->
+            <tr><th colspan="4">August 2026</th></tr>
+            <!-- August rows here -->
+        </tbody>
+    </table>
 </body>
 </html>
