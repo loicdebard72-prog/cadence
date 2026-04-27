@@ -2,30 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participation</title>
+    <title>Interactive Calendar</title>
     <style>
-        .available {
-            color: green;
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
         }
+        th, td { 
+            border: 1px solid #333; 
+            padding: 10px; 
+            text-align: center; 
+        }
+        .oui { background-color: green; }
+        .non { background-color: red; }
+        .partiel { background-color: yellow; }
+        .unknown { background-color: grey; }
     </style>
 </head>
 <body>
-    <h1>Participants</h1>
+    <h1>Interactive Calendar</h1>
+    <h2>Participants</h2>
     <ul>
         <li>Louise</li>
         <li>Béatrice</li>
         <li>Alto</li>
         <li>Aymeric</li>
         <li>Christophe</li>
-        <li>Nicolas <span class="available">(54 Confirmed Availability: OUI)</span></li>
+        <li>Nicolas</li>
     </ul>
-    <h2>Months</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Louise</th>
+                <th>Béatrice</th>
+                <th>Alto</th>
+                <th>Aymeric</th>
+                <th>Christophe</th>
+                <th>Nicolas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mai</td>
+                <td class="oui">OUI</td>
+                <td class="non">NON</td>
+                <td class="partiel">Partiel</td>
+                <td class="oui">OUI</td>
+                <td class="unknown">?</td>
+                <td class="oui">OUI</td>
+            </tr>
+            <tr>
+                <td>Juin</td>
+                <td class="oui">OUI</td>
+                <td class="oui">OUI</td>
+                <td class="unknown">?</td>
+                <td class="non">NON</td>
+                <td class="oui">OUI</td>
+                <td class="oui">OUI</td>
+            </tr>
+            <tr>
+                <td>Juillet</td>
+                <td class="partiel">Partiel</td>
+                <td class="oui">OUI</td>
+                <td class="oui">OUI</td>
+                <td class="non">NON</td>
+                <td class="non">NON</td>
+                <td class="oui">OUI</td>
+            </tr>
+            <tr>
+                <td>Août</td>
+                <td class="oui">OUI</td>
+                <td class="partiel">Partiel</td>
+                <td class="oui">OUI</td>
+                <td class="oui">OUI</td>
+                <td class="non">NON</td>
+                <td class="oui">OUI</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Legend</h3>
     <ul>
-        <li>Mai</li>
-        <li>Juin</li>
-        <li>Juillet</li>
-        <li>Août</li>
+        <li><span class="oui">OUI</span>: Confirmed availability</li>
+        <li><span class="non">NON</span>: Not available</li>
+        <li><span class="partiel">Partiel</span>: Partially available</li>
+        <li><span class="unknown">?</span>: Unknown availability</li>
     </ul>
+    <script>
+        document.querySelectorAll('td').forEach(cell => {
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('oui');
+                cell.classList.toggle('non');
+                cell.classList.toggle('partiel');
+                cell.classList.toggle('unknown');
+            });
+        });
+    </script>
 </body>
 </html>
