@@ -1,236 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planning Cadence Disponibilités Mai–Août 2026</title>
+    <title>Participation</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            padding: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        .legend {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        .legend span {
-            margin: 0 15px;
-            display: inline-block;
-        }
-        .legend-box {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-            vertical-align: middle;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-        .oui { background-color: #4CAF50; }
-        .non { background-color: #f44336; }
-        .partiel { background-color: #FFC107; }
-        .incertain { background-color: #2196F3; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-            font-size: 13px;
-        }
-        th {
-            background-color: #667eea;
-            color: white;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f0f0f0;
-        }
-        .date-col {
-            font-weight: 600;
-            background-color: #f5f5f5;
-            min-width: 100px;
-        }
-        .time-slot {
-            font-size: 12px;
-            color: #555;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 6px;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            text-align: center;
-            font-size: 13px;
-        }
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
-        }
-        .stats {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 20px;
-            }
-            th, td {
-                padding: 8px;
-                font-size: 11px;
-            }
+        .available {
+            color: green;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📅 Planning Cadence</h1>
-        <h2 style="text-align: center; color: #999; margin-bottom: 20px; font-size: 18px;">Disponibilités Mai–Août 2026</h2>
-        
-        <div class="legend">
-            <span><div class="legend-box oui"></div>OUI</span>
-            <span><div class="legend-box non"></div>NON</span>
-            <span><div class="legend-box partiel"></div>Partiel</span>
-            <span><div class="legend-box incertain"></div>?</span>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Créneau</th>
-                    <th>Louise</th>
-                    <th>Béatrice</th>
-                    <th>Alto</th>
-                    <th>Aymeric</th>
-                    <th>Christophe</th>
-                    <th>Nicolas</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
-
-        <div class="stats">
-            <strong>Total:</strong> 31 jours · 93 créneaux · Mai–Août 2026
-        </div>
-    </div>
-
-    <script>
-        // Générer le calendrier
-        const months = ['Mai', 'Juin', 'Juillet', 'Août'];
-        const daysInMonth = [31, 30, 31, 31];
-        const timeSlots = ['10h–13h', '14h–18h', '19h–22h'];
-        const participants = ['Louise', 'Béatrice', 'Alto', 'Aymeric', 'Christophe', 'Nicolas'];
-        const dayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-        
-        const tableBody = document.getElementById('tableBody');
-        let dayOfWeek = 4; // 1er Mai 2026 est un vendredi (index 4)
-
-        for (let monthIdx = 0; monthIdx < 4; monthIdx++) {
-            const daysInCurrentMonth = daysInMonth[monthIdx];
-            
-            for (let day = 1; day <= daysInCurrentMonth; day++) {
-                const currentDayName = dayNames[dayOfWeek];
-                
-                for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-                    const row = document.createElement('tr');
-                    
-                    // Date et jour
-                    const dateCell = document.createElement('td');
-                    dateCell.className = 'date-col';
-                    dateCell.textContent = slotIdx === 0 ? `${day.toString().padStart(2, '0')} ${currentDayName}` : '';
-                    row.appendChild(dateCell);
-                    
-                    // Créneau horaire
-                    const timeCell = document.createElement('td');
-                    timeCell.className = 'time-slot';
-                    timeCell.textContent = timeSlots[slotIdx];
-                    row.appendChild(timeCell);
-                    
-                    // Cellules pour chaque participant
-                    for (let i = 0; i < participants.length; i++) {
-                        const cell = document.createElement('td');
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.placeholder = '—';
-                        input.addEventListener('change', function() {
-                            updateCellColor(this);
-                        });
-                        cell.appendChild(input);
-                        row.appendChild(cell);
-                    }
-                    
-                    tableBody.appendChild(row);
-                }
-                
-                dayOfWeek = (dayOfWeek + 1) % 7;
-            }
-        }
-
-        function updateCellColor(input) {
-            const value = input.value.toLowerCase().trim();
-            const cell = input.parentElement;
-            
-            cell.style.backgroundColor = '';
-            
-            if (value === 'oui' || value === 'yes') {
-                cell.style.backgroundColor = '#4CAF50';
-                input.style.color = 'white';
-            } else if (value === 'non' || value === 'no') {
-                cell.style.backgroundColor = '#f44336';
-                input.style.color = 'white';
-            } else if (value === 'partiel') {
-                cell.style.backgroundColor = '#FFC107';
-                input.style.color = '#333';
-            } else if (value === '?' || value === 'incertain') {
-                cell.style.backgroundColor = '#2196F3';
-                input.style.color = 'white';
-            } else {
-                input.style.color = '#333';
-            }
-        }
-    </script>
+    <h1>Participants</h1>
+    <ul>
+        <li>Louise</li>
+        <li>Béatrice</li>
+        <li>Alto</li>
+        <li>Aymeric</li>
+        <li>Christophe</li>
+        <li>Nicolas <span class="available">(54 Confirmed Availability: OUI)</span></li>
+    </ul>
+    <h2>Months</h2>
+    <ul>
+        <li>Mai</li>
+        <li>Juin</li>
+        <li>Juillet</li>
+        <li>Août</li>
+    </ul>
 </body>
 </html>
